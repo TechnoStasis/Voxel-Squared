@@ -1,4 +1,4 @@
-package voxelengine.datafile;
+package voxelengine.data.util;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -11,6 +11,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
+
+import voxelengine.data.DataList;
 
 /**
  * List of data related utilities for reading and writing, mostly centered around the Data format.
@@ -50,8 +52,9 @@ public class DataUtils {
 	 * @param file
 	 * @param hold
 	 */
-	public static void saveList(File file, DataHolder hold) {
+	public static void saveList(File file, DataList hold) {
 		try {
+			
 			DataOutputStream dataOutput = new DataOutputStream(new BufferedOutputStream(new GZIPOutputStream(new FileOutputStream(file))));
 
 			hold.save(dataOutput);
@@ -67,15 +70,22 @@ public class DataUtils {
 	 * @param file
 	 * @return
 	 */
-	public static DataHolder loadList(File file)
+	public static DataList loadList(File file)
 	{
+		
+		if(!file.exists())
+		{
+			System.out.println("File does not exist");
+			return null;
+		}
+		
 		try {
 			DataInputStream dataInput = new DataInputStream(new BufferedInputStream(new GZIPInputStream(new FileInputStream(file))));
-			DataHolder holder = new DataHolder();
-			
+			DataList holder = new DataList();
 			holder.load(dataInput);
 			
 			dataInput.close();
+			
 			return holder;
 		} catch(Exception e)
 		{

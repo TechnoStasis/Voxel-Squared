@@ -1,5 +1,9 @@
-package voxelengine.datafile;
+package voxelengine.data.util;
 
+import voxelengine.data.Data;
+import voxelengine.data.DataIntArray;
+import voxelengine.data.DataList;
+import voxelengine.data.DataString;
 import voxelengine.registry.Registry;
 
 public class DataTyper {
@@ -7,7 +11,7 @@ public class DataTyper {
 	private static final Registry<Class<? extends Data>> dataTypeRegistry = new Registry<Class<? extends Data>>();
 	
 	static {
-		dataTypeRegistry.register(DataHolder.class);
+		dataTypeRegistry.register(DataList.class);
 		dataTypeRegistry.register(DataString.class);
 		dataTypeRegistry.register(DataIntArray.class);
 	}
@@ -15,7 +19,7 @@ public class DataTyper {
 	@Deprecated
 	public static byte getIDFromData(Data dat)
 	{
-		if(dat.getClass().equals(DataHolder.class))
+		if(dat.getClass().equals(DataList.class))
 			return 1;
 		else if(dat.getClass().equals(DataString.class))
 			return 2;			
@@ -34,7 +38,7 @@ public class DataTyper {
 		switch(bit)
 		{
 		case 1:
-			return new DataHolder();
+			return new DataList();
 		case 2:
 			return new DataString();
 		

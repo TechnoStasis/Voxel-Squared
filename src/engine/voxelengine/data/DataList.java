@@ -1,15 +1,17 @@
-package voxelengine.datafile;
+package voxelengine.data;
 
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class DataHolder extends Data {
+import voxelengine.data.util.DataTyper;
+
+public class DataList extends Data {
 
 	public HashMap<String, Data> dataMap = new HashMap<String, Data>();
 
-	public DataHolder() {
+	public DataList() {
 		dataMap.clear();
 	}
 
@@ -30,8 +32,9 @@ public class DataHolder extends Data {
 		{   Data dat = null;		
 			
 			byte bit = stream.readByte();
-			if(bit == 0)
+			if(bit == 0) {
 				break;
+			}
 			
 			dat = DataTyper.getDataInstance(bit);
 		
@@ -45,7 +48,7 @@ public class DataHolder extends Data {
 	@Override
 	public void save(DataOutput stream) throws Exception{
 		Iterator<String> idIter = dataMap.keySet().iterator();
-
+		
 		while (idIter.hasNext()) {
 			String id = idIter.next();
 			Data data = dataMap.get(id);

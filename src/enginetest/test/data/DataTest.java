@@ -2,9 +2,9 @@ package test.data;
 
 import java.io.File;
 
-import voxelengine.datafile.DataHolder;
-import voxelengine.datafile.DataIntArray;
-import voxelengine.datafile.DataUtils;
+import voxelengine.data.DataIntArray;
+import voxelengine.data.DataList;
+import voxelengine.data.util.DataUtils;
 
 public class DataTest {
 
@@ -17,14 +17,14 @@ public class DataTest {
 	
 	public static void write()
 	{
-		DataHolder holder = new DataHolder();
+		DataList holder = new DataList();
 		holder.setData("haha", new DataIntArray(new int[]{1}));
 		DataUtils.saveList(file, holder);
 	}
 	
 	public static void read()
 	{
-		DataHolder holder = DataUtils.loadList(file);
+		DataList holder = DataUtils.loadList(file);
 		System.out.println(((DataIntArray)holder.getData("haha")).getData()[0]);
 	}
 

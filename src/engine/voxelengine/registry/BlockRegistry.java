@@ -30,6 +30,9 @@ public final class BlockRegistry{
 		return block != null ? registry.getIDFromObj(block) : -1;
 	}
 	
+	/**
+	 * Increments the registry's ID count by one.
+	 */
 	public static void incrementID()
 	{
 		registry.id++;

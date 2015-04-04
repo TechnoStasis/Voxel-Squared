@@ -1,4 +1,4 @@
-package voxelengine.datafile;
+package voxelengine.data;
 
 import java.io.DataInput;
 import java.io.DataOutput;
