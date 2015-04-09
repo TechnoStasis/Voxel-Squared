@@ -2,11 +2,8 @@ package voxelsquared.entity.player;
 
 public class PlayerEntity {
 
-	public double x = 0D;
-	public double y = 0D;
-	
-	public double motionX = 0D;
-	public double motionY = 0D;
+	private double x = 0D;
+	private double y = 0D;
 	
 	public PlayerEntity()
 	{
@@ -15,11 +12,7 @@ public class PlayerEntity {
 	
 	public void update()
 	{
-		x+=motionX;
-		y+=motionY;
-		
-		motionX-=0.1;
-		motionY-=0.1;
+		System.out.println(String.format("X: %s, Y: %s", x, y));
 	}
 	
 	public double x()
@@ -30,6 +23,16 @@ public class PlayerEntity {
 	public double y()
 	{
 		return y;
+	}
+	
+	public void setX(double d)
+	{
+		x = d;
+	}
+	
+	public void setY(double d)
+	{
+		y = d;
 	}
 	
 }

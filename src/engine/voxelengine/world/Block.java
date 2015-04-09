@@ -1,5 +1,7 @@
 package voxelengine.world;
 
+import org.newdawn.slick.Color;
+
 /**
  * Main object to be interacted with in a world. Blocks are stored within chunks which are stored within
  * world instances.
@@ -14,7 +16,7 @@ public abstract class Block {
 	{
 		name = na;
 	}
-	
-	public abstract void render(int x, int y);
+
+	public abstract Color getColorBind();
 	public abstract int getID();
 }

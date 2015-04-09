@@ -11,7 +11,7 @@ public class WorldUtils {
 	
 	public static int convertToChunkCoord(int coord)
 	{
-		return coord / Info.CHUNK_SIZE;
+		return Math.abs(coord) / Info.CHUNK_SIZE;
 	}
 	
 }

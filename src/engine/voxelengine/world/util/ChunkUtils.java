@@ -12,8 +12,11 @@ public class ChunkUtils {
 		Chunk chunk = loadChunk(x, y, holder);
 		
 		if(chunk == null){
-			chunk = new Chunk(); 
+			System.out.println("genning chunk");
+			chunk = new Chunk(x, y); 
 			gen.generate(x, y, chunk);
+
+			return chunk;
 		}
 		
 		return chunk;
@@ -21,22 +24,24 @@ public class ChunkUtils {
 	
 	public static Chunk loadChunk(int cx, int cy, DataList holder) {
 		try {
-			DataIntArray chunk = (DataIntArray) holder.getData(String.format("Chunk:%s,%s", cx, cy));
+			DataIntArray chunkData = (DataIntArray) holder.getData(String.format("Chunk:%s,%s", cx, cy));
 			
-			Chunk builtChunk = new Chunk();
+			if(chunkData == null)
+				return null;
 			
-			builtChunk.setChunkData(chunk.getData());
+			Chunk builtChunk = new Chunk(cx, cy);
+			
+			builtChunk.setChunkData(chunkData.getData());
 			
 			return builtChunk;
 			
 		} catch (Exception e) {
-			System.out.println("Unable to load chunk");
-			e.printStackTrace();
+			//e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 
-	public static DataList saveChunk(int cx, int cy, DataList mainDataHolder, Chunk chunk) {
+	public static DataList saveChunk(DataList mainDataHolder, Chunk chunk) {
 
 		if(mainDataHolder == null)
 		{
@@ -46,7 +51,7 @@ public class ChunkUtils {
 		try {
 			DataIntArray data = new DataIntArray(chunk.getChunkData());
 			
-			mainDataHolder.setData(String.format("Chunk:%s,%s", cx, cy), data);
+			mainDataHolder.setData(String.format("Chunk:%s,%s", chunk.toCoords().x(), chunk.toCoords().y()), data);
 
 		} catch (Exception e) {
 			e.printStackTrace();

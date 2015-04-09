@@ -18,6 +18,8 @@ public @interface Mod {
 
 	String name();
 	
+	String version();
+	
 	/**
 	 * Whether the mod should initialize, if set to false, it will not be activated in the loading phase.
 	 * @return

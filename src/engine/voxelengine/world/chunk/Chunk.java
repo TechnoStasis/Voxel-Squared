@@ -4,6 +4,7 @@ import voxelengine.arrays.Array2D;
 import voxelengine.info.Info;
 import voxelengine.registry.BlockRegistry;
 import voxelengine.world.Block;
+import voxelengine.world.util.ChunkCoordinates;
 
 public class Chunk {
 
@@ -14,8 +15,16 @@ public class Chunk {
 	
 	public boolean genned = false;
 	
+	private int chunkX = 0;
+	private int chunkY = 0;
+	
+	public Chunk(int x, int y)
+	{
+		chunkX = x;
+		chunkY = y;
+	}
+	
 	public void setBlock(int chunk_x, int chunk_y, Block tile) {
-		
 		data.set(chunk_x, chunk_y, BlockRegistry.getIDFromBlock(tile));
 	}
 
@@ -38,6 +47,16 @@ public class Chunk {
 				setBlock(x, y, block);
 			}
 		}
+	}
+	
+	public ChunkCoordinates toCoords()
+	{
+		return new ChunkCoordinates(chunkX, chunkY);
+	}
+	
+	public Array2D getData()
+	{
+		return data;
 	}
 	
 /*	public void gen(int cx, int cy, SimplexNoise noiseGenerator) {

@@ -2,7 +2,6 @@ package voxelengine.impl;
 
 import org.newdawn.slick.Color;
 
-import voxelengine.render.Square;
 import voxelengine.world.Block;
 
 public class BasicTile extends Block{
@@ -13,16 +12,15 @@ public class BasicTile extends Block{
 	}
 
 	@Override
-	public void render(int x, int y) {
-		Square square = new Square(x, y, 1, 1);
-		Color.white.bind();
-		square.renderSquare();
+	public int getID() {
+		// TODO Auto-generated method stub
+		return 1;
 	}
 
 	@Override
-	public int getID() {
+	public Color getColorBind() {
 		// TODO Auto-generated method stub
-		return 0;
+		return Color.white;
 	}
 
 }

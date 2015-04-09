@@ -13,6 +13,8 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 import voxelengine.data.DataList;
+import voxelengine.log.LogManager;
+import voxelengine.log.Logger;
 
 /**
  * List of data related utilities for reading and writing, mostly centered around the Data format.
@@ -25,6 +27,8 @@ public class DataUtils {
 	{
 		
 	}
+	
+	private static final Logger log = LogManager.requestLogger("Data Utilities");
 	
 	/** 
 	 * Reads a string from an input stream.
@@ -75,7 +79,7 @@ public class DataUtils {
 		
 		if(!file.exists())
 		{
-			System.out.println("File does not exist");
+			log.info("File does not exist: " + file.getName());
 			return null;
 		}
 		

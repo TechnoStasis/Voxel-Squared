@@ -15,16 +15,9 @@ public class TerrainGenerationNoise implements ITerrainGenerator{
 	
 	@Override
 	public void generate(int chunk_x, int chunk_y, Chunk chunk) {
-		double noise = this.noiseGen.getNoise(chunk_x, chunk_y);
+		//double noise = this.noiseGen.getNoise(chunk_x, chunk_y);
 		
-		if(noise > 0.575D)
-		{
-			chunk.fill(Blocks.grassTile);
-		}
-		if(noise > 0.250D)
-		{
-			chunk.fill(Blocks.greyTile);
-		}
+		chunk.fill(Blocks.grassTile);
 	}
 
 }

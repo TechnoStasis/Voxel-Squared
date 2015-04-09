@@ -2,8 +2,8 @@ package voxelengine.world.util;
 
 public class ChunkCoordinates {
 
-	private long x;
-	private long y;
+	private Long x;
+	private Long y;
 	
 	public ChunkCoordinates(long x, long y)
 	{
@@ -21,8 +21,14 @@ public class ChunkCoordinates {
 		return y;
 	}
 	
+	public int hashCode()
+	{
+		
+		return x.hashCode()*3 + y.hashCode() >> 32;
+	}
+	
 	public boolean equals(Object obj)
 	{
-		return obj instanceof ChunkCoordinates && ((ChunkCoordinates)obj).x() == this.x() && ((ChunkCoordinates)obj).y() == this.y();
+		return ((ChunkCoordinates)obj).x() == this.x() && ((ChunkCoordinates)obj).y() == this.y();
 	}
 }

@@ -59,8 +59,8 @@ public class Array2D {
 		return x >= 0 && y >= y && x <= maxX && y <= maxY;
 	}
 	
-	public boolean isEquals(Object obj)
+	public boolean equals(Object obj)
 	{
-		return obj instanceof Array2D && ((Array2D)obj).getData() == this.getData();
+		return obj != null && obj instanceof Array2D && ((Array2D)obj).getData() == this.getData();
 	}
 }
